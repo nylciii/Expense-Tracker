@@ -1,0 +1,88 @@
+{
+  "clientName": "Expense Tracker API",
+  "collectionName": "Expense Tracker",
+  "collectionId": "expense-tracker-api",
+  "requests": [
+    {
+      "name": "Get Hello (Root)",
+      "method": "GET",
+      "url": "http://localhost:3000",
+      "headers": [],
+      "body": {}
+    },
+    {
+      "name": "Get All Expenses",
+      "method": "GET",
+      "url": "http://localhost:3000/expenses",
+      "headers": [],
+      "body": {}
+    },
+    {
+      "name": "Get Balance",
+      "method": "GET",
+      "url": "http://localhost:3000/expenses/balance",
+      "headers": [],
+      "body": {}
+    },
+    {
+      "name": "Create Income",
+      "method": "POST",
+      "url": "http://localhost:3000/expenses",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"type\": \"income\",\n  \"amount\": 5000,\n  \"description\": \"Salary\",\n  \"category\": \"Work\"\n}"
+      }
+    },
+    {
+      "name": "Create Expense",
+      "method": "POST",
+      "url": "http://localhost:3000/expenses",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"type\": \"expense\",\n  \"amount\": 150,\n  \"description\": \"Groceries\",\n  \"category\": \"Food\"\n}"
+      }
+    },
+    {
+      "name": "Get Expense by ID",
+      "method": "GET",
+      "url": "http://localhost:3000/expenses/1",
+      "headers": [],
+      "body": {}
+    },
+    {
+      "name": "Update Expense",
+      "method": "PATCH",
+      "url": "http://localhost:3000/expenses/1",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"amount\": 200,\n  \"description\": \"Updated Groceries\"\n}"
+      }
+    },
+    {
+      "name": "Delete Expense",
+      "method": "DELETE",
+      "url": "http://localhost:3000/expenses/1",
+      "headers": [],
+      "body": {}
+    }
+  ]
+}
+

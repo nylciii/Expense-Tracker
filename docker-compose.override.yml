@@ -1,0 +1,25 @@
+# This file is optional and overrides docker-compose.yml for local development
+# Docker Compose automatically applies this file when present
+
+version: '3.8'
+
+services:
+  postgres:
+    # Additional development-specific configurations
+    environment:
+      # Enable more verbose logging (optional)
+      POSTGRES_INITDB_ARGS: "-c log_statement=all -c log_duration=on"
+    
+    # Map local port to enable local tools connection
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    # Local development access
+    ports:
+      - "5050:80"
+    
+    # Optional: Pre-configure server connections
+    environment:
+      SCRIPT_NAME_MAP: "/pgadmin4"
+      ENHANCED_HEALTH_CHECKS: "False"

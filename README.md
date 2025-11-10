@@ -44,6 +44,32 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Docker Setup (PostgreSQL)
+
+This project uses Docker to run PostgreSQL and pgAdmin. See [DOCKER_README.md](./DOCKER_README.md) for complete setup instructions.
+
+### Quick Start
+```bash
+# 1. Copy environment
+cp .env.example .env
+
+# 2. Start services
+docker compose up -d
+
+# 3. Access pgAdmin at http://localhost:5050
+```
+
+### Essential Commands
+```bash
+docker compose up -d              # Start
+docker compose down               # Stop
+docker compose ps                 # Status
+docker compose logs -f            # Logs
+docker compose exec postgres psql -U postgres -d expense_tracker  # Connect
+```
+
+👉 **See [DOCKER_README.md](./DOCKER_README.md) for full instructions**
+
 ## Run tests
 
 ```bash
