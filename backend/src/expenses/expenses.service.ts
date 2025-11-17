@@ -14,7 +14,11 @@ export class ExpensesService {
 
   // CREATE - Add a new expense
   create(createExpenseDto: CreateExpenseDto): Promise<Expense> {
-    const expense = this.expenseRepository.create(createExpenseDto);
+    const expense = this.expenseRepository.create({
+      ...createExpenseDto,
+      category: createExpenseDto.category || 'other',
+      type: createExpenseDto.type || 'expense',
+    });
     return this.expenseRepository.save(expense);
   }
 

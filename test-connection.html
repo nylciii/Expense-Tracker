@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Backend Connection</title>
+</head>
+<body>
+    <h1>Test Backend Connection</h1>
+    <button onclick="testConnection()">Test GET /expenses</button>
+    <button onclick="testPost()">Test POST /expenses</button>
+    <pre id="output"></pre>
+
+    <script>
+        const output = document.getElementById('output');
+        
+        async function testConnection() {
+            output.textContent = 'Testing GET /expenses...\\n';
+            try {
+                const res = await fetch('http://localhost:3000/expenses');
+                const data = await res.json();
+                output.textContent += `Success! Status: ${res.status}\\n`;
+                output.textContent += `Data: ${JSON.stringify(data, null, 2)}`;
+            } catch (err) {
+                output.textContent += `Error: ${err.message}`;
+            }
+        }
+        
+        async function testPost() {
+            output.textContent = 'Testing POST /expenses...\\n';
+            const payload = {
+                description: 'Test Expense',
+                amount: 100
+            };
+            output.textContent += `Sending: ${JSON.stringify(payload, null, 2)}\\n\\n`;
+            
+            try {
+                const res = await fetch('http://localhost:3000/expenses', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                output.textContent += `Response Status: ${res.status}\\n`;
+                
+                if (res.ok) {
+                    const data = await res.json();
+                    output.textContent += `Success!\\nData: ${JSON.stringify(data, null, 2)}`;
+                } else {
+                    const errorText = await res.text();
+                    output.textContent += `Error: ${errorText}`;
+                }
+            } catch (err) {
+                output.textContent += `Network Error: ${err.message}`;
+            }
+        }
+    </script>
+</body>
+</html>
