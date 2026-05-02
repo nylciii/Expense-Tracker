@@ -34,7 +34,7 @@ function ExpenseUi({
           <div>
             <h1 className="title">
               <span className="icon">◎</span>
-              FinPlanner
+              Expense Tracker 
             </h1>
             <p className="subtitle">{userLabel}</p>
           </div>
