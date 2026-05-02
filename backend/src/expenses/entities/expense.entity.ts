@@ -17,12 +17,12 @@ export class Expense {
   amount: number;
 
   @Column({
-    type: 'enum',
+    type: 'simple-enum',
     enum: ['food', 'transport', 'entertainment', 'utilities', 'other'],
   })
   category: 'food' | 'transport' | 'entertainment' | 'utilities' | 'other';
 
-  @Column({ type: 'enum', enum: ['income', 'expense'] })
+  @Column({ type: 'simple-enum', enum: ['income', 'expense'] })
   type: 'income' | 'expense';
 
   @Column({ type: 'date', nullable: true })

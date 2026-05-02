@@ -51,8 +51,8 @@ export class ExpensesController {
 
   // DELETE /expenses/:id - Delete expense
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    this.expensesService.remove(id);
+  async remove(@Param('id') id: string) {
+    await this.expensesService.remove(id);
     return { message: 'Expense deleted successfully' };
   }
 }

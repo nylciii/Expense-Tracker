@@ -11,19 +11,29 @@ import { AuthModule } from './auth/auth.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.DB_HOST || 'localhost',
-      port: parseInt(process.env.DB_PORT || '5432'),
-      username: process.env.DB_USER || 'postgres',
-      password: process.env.DB_PASSWORD || 'postgres',
-      database: process.env.DB_NAME || 'expense_tracker',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
-      synchronize: false, // Disable auto-sync; use migrations instead
-      migrationsRun: true, // Auto-run migrations on app start
-      logging: false,
-    }),
+    TypeOrmModule.forRoot(
+      process.env.AUTH_DISABLED === 'true'
+        ? {
+            type: 'sqlite',
+            database: process.env.SQLITE_DB_PATH || 'dev.sqlite',
+            entities: [__dirname + '/**/*.entity{.ts,.js}'],
+            synchronize: true,
+            logging: false,
+          }
+        : {
+            type: 'postgres',
+            host: process.env.DB_HOST || 'localhost',
+            port: parseInt(process.env.DB_PORT || '5432'),
+            username: process.env.DB_USER || 'postgres',
+            password: process.env.DB_PASSWORD || 'postgres',
+            database: process.env.DB_NAME || 'expense_tracker',
+            entities: [__dirname + '/**/*.entity{.ts,.js}'],
+            migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
+            synchronize: false, // Disable auto-sync; use migrations instead
+            migrationsRun: true, // Auto-run migrations on app start
+            logging: false,
+          },
+    ),
     AuthModule,
     ExpensesModule,
   ],
